@@ -250,7 +250,7 @@ const App = () => {
       setAccountType('guest');
       
       // Fetch existing rooms
-      fetch('http://localhost:3000/api/rooms')
+      fetch(`${import.meta.env.VITE_SERVER_URL}/api/rooms`)
         .then(response => {
           if (!response.ok) {
             throw new Error('Failed to fetch rooms');
@@ -286,7 +286,7 @@ const App = () => {
       setUsername('');
       
       // Fetch existing rooms
-      fetch('http://localhost:3000/api/rooms')
+      fetch(`${import.meta.env.VITE_SERVER_URL}/api/rooms`)
         .then(response => {
           if (!response.ok) {
             throw new Error('Failed to fetch rooms');
@@ -324,7 +324,7 @@ const App = () => {
 
   const handleCreateRoom = () => {
     if (newRoomName.trim()) {
-      fetch('http://localhost:3000/api/rooms', {
+      fetch(`${import.meta.env.VITE_SERVER_URL}/api/rooms`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ roomName: newRoomName.trim(), createdBy: user.userId })
@@ -350,7 +350,7 @@ const App = () => {
 
   const handleDeleteRoom = (roomName) => {
     if (window.confirm(`Are you sure you want to delete the group "${roomName}"? This action cannot be undone.`)) {
-      fetch(`http://localhost:3000/api/rooms/${encodeURIComponent(roomName)}`, {
+      fetch(`${import.meta.env.VITE_SERVER_URL}/api/rooms/${encodeURIComponent(roomName)}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
